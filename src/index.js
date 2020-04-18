@@ -5,6 +5,7 @@ import * as serviceWorker from './utils/serviceWorker';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import './config';
 
 ReactDOM.render(
   <React.StrictMode>

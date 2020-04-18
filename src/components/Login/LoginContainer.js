@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import LoginView from './LoginView';
 import { connect } from 'react-redux';
-import { setLogin, setPassword, setIsError, setIsFetching } from '../../redux/reducers/reducers';
-import { getIsError, getLogin, getPassword, getIsFetching } from '../../redux/selectors/loginSelectors'; 
+import { setLogin, setPassword, setIsError, setIsFetching } from '../../redux/reducers/signIn';
+import { getIsError, getLogin, getPassword, getIsFetching } from '../../redux/selectors/signInSelectors'; 
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -12,10 +12,6 @@ class LoginContainer extends Component {
       loginValue: '',
       passwordValue: ''
     }
-  }
-
-  componentDidUpdate() {
-    console.log('updated', this.state);
   }
 
   onSubmit = () => {

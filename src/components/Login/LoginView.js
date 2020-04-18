@@ -1,6 +1,5 @@
 import React from 'react';
-import { FormInput } from '../FormControl/FormItems';
-import './Login.scss';
+import './login-form.scss';
 
 function LoginView(props) {
   const { onLoginChange, onPasswordChange, login, password, handleClick, error } = props;
@@ -10,12 +9,8 @@ function LoginView(props) {
       <h1>Login</h1>
       
       <div className="login-form  login-page__form">
-        <FormInput name="Login" error={error}>
-          <input className="form-input__item" type="text" onChange={onLoginChange} name="login" value={login} placeholder="Please enter a login" />
-        </FormInput>
-        <FormInput name="Password" error={error}>
-          <input className="form-input__item" type="password" onChange={onPasswordChange} name="password" value={password} placeholder="Please enter a password" />
-        </FormInput>
+        <input className="form-input__item" type="text" onChange={onLoginChange} name="login" value={login} placeholder="Please enter a login" />
+        <input className="form-input__item" type="password" onChange={onPasswordChange} name="password" value={password} placeholder="Please enter a password" />
         <button className="form-input__btn-submit" onClick={handleClick}>Login</button>
       </div>
     </section>

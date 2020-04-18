@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.scss';
+import './home.scss';
 
 const image = require('../../assets/images/home.jpg');
 

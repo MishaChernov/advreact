@@ -1,7 +1,10 @@
 @import "./variables.scss";
 
-@import "./components/App/App.scss";
-@import "./components/Login/Login.scss";
-@import "./components/Header/Header.scss";
-@import "./components/Home/Home.scss";
-@import "../../components/FormInput/form.scss";
+@import "../../components/App/global.scss";
+@import "../../components/Login/login-form.scss";
+@import "../../components/Registration/registration-form.scss";
+@import "../../components/Header/header.scss";
+@import "../../components/Home/home.scss";
+@import "../../components/FormInput/form-control.scss";
+@import "../../components/Loader/loader.scss";
+
