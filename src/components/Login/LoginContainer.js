@@ -18,7 +18,7 @@ class LoginContainer extends Component {
     console.log('updated', this.state);
   }
 
-  handleClick = () => {
+  onSubmit = () => {
     this.props.setLogin(this.state.loginValue);
     this.props.setPassword(this.state.passwordValue);
   }
@@ -41,7 +41,7 @@ class LoginContainer extends Component {
 
     return (
       <LoginView 
-        handleClick={this.handleClick}
+        onSubmit={this.onSubmit}
         onLoginChange={this.onLoginChange}
         onPasswordChange={this.onPasswordChange}
         login={loginValue}

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 const initialLoginState = {
   isFetching: false,
@@ -52,7 +53,8 @@ export const setLoginThunk = login => dispatch => {
 }
 
 const reducers = combineReducers({
-  login
+  login,
+  form: formReducer
 });
 
 export default reducers;
