@@ -27,5 +27,5 @@ class RegistrationContainer extends React.Component {
 }
 
 export default connect(state => ({
-  loading: state.authReducer.loading
+  loading: state.auth.loading
 }), {signUp})(RegistrationContainer);
