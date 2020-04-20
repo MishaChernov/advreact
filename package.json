@@ -6,10 +6,16 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "firebase": "^7.14.1",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.0",
     "history": "^4.10.1",
+    "http2": "^3.3.7",
+    "immutable": "^4.0.0-rc.12",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "redux-form": "^8.3.5"
   },
   "scripts": {
     "start": "react-scripts start",
