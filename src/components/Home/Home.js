@@ -1,16 +1,31 @@
-import React from 'react';
-import './home.scss';
+import React from "react";
 
-const image = require('../../assets/images/home.jpg');
+//MUI stuff
+import withStyles from "@material-ui/styles/withStyles/withStyles";
+import Typography from "@material-ui/core/Typography/Typography";
+
+const image = require("../../assets/images/home.jpg");
+
+const styles = (theme) => ({
+  homePage: {
+    padding: "20px",
+  },
+  img: {
+    width: "100%",
+  },
+});
 
 const Home = (props) => {
-  
+  const { classes } = props;
+
   return (
-    <section className="home">
-      <h1>Home</h1>
-      <img className="home__img" src={image} alt="Home image"/>
+    <section className={classes.homePage}>
+      <Typography variant="h3" gutterBottom="20">
+        Home page
+      </Typography>
+      <img className={classes.img} src={image} alt="Home image" />
     </section>
   );
-}
+};
 
-export default Home;
+export default withStyles(styles)(Home);
