@@ -1,10 +1,11 @@
-import firebase from 'firebase';
+import firebase from "firebase";
+import axios from "axios";
 
-export const authAPI = {
+export const user = {
   createUserWithEmailAndPassword(email, password) {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
   },
-  
+
   signInWithEmailAndPassword(email, password) {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   },
@@ -15,11 +16,15 @@ export const authAPI = {
 
   signOut() {
     return firebase.auth().signOut();
-  }
-}
+  },
+
+  signup(data) {
+    return axios.post("/signup", data);
+  },
+};
 
 const api = {
-  authAPI
-}
+  user,
+};
 
 export default api;

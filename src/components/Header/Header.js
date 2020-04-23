@@ -1,35 +1,76 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { signOut } from './../../redux/reducers/auth';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
-import "./header.scss";
+//MUI stuff
+import withStyles from "@material-ui/core/styles/withStyles";
+import Grid from "@material-ui/core/Grid/Grid";
+import Button from "@material-ui/core/Button/Button";
+
+const styles = (theme) => ({
+  header: {
+    marginBottom: "40px",
+    backgroundColor: theme.palette.primary.light,
+    boxShadow:
+      "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
+  },
+  button: {
+    height: "100%",
+    border: "none",
+    outline: "none",
+  },
+  link: {
+    display: "inline-block",
+    padding: "15px",
+    textTransform: "uppercase",
+    color: theme.palette.primary.contrastText,
+    textDecoration: "none",
+  },
+  linkActive: {
+    backgroundColor: theme.palette.primary.darker,
+  },
+});
 
 const Header = (props) => {
-  const { userEmail, signOut } = props;
+  const { signOut, classes } = props;
 
-  console.log(userEmail);
-  
+  return (
+    <header className="header" className={classes.header}>
+      <Grid container justify="center">
+        <Grid item xs={4} align="left">
+          <NavLink
+            to="/"
+            exact
+            activeClassName={classes.linkActive}
+            className={classes.link}
+          >
+            Home
+          </NavLink>
+        </Grid>
 
-  return(
-    <header className="header">
-      <nav className="navigation">
-        <NavLink to="/" exact activeClassName="navigation__link--active" className="navigation__link">Home</NavLink>
-      </nav>
-
-      <nav className="consumer">
-        <NavLink to="/login" activeClassName="consumer__link--active" className="consumer__link">Login</NavLink>
-        <NavLink to="/register" activeClassName="consumer__link--active" className="consumer__link">Register</NavLink>    
-      </nav>
-      <button onClick={signOut}>Sign Out</button>
+        <Grid item xs={8} align="right">
+          <NavLink
+            to="/login"
+            activeClassName={classes.linkActive}
+            className={classes.link}
+          >
+            Login
+          </NavLink>
+          <NavLink
+            to="/registration"
+            activeClassName={classes.linkActive}
+            className={classes.link}
+          >
+            Sign Up
+          </NavLink>
+          <Button variat="text" onClick={signOut} className={classes.button}>
+            Sign Out
+          </Button>
+        </Grid>
+      </Grid>
     </header>
-  )
-}
+  );
+};
 
-const mapStateToProps = (state) => {
-  return {
-    userEmail: state.auth.user
-  }
-}
-
-export default connect(mapStateToProps, {signOut})(Header);
+export default compose(withStyles(styles))(Header);
