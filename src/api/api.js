@@ -21,6 +21,10 @@ export const user = {
   signup(data) {
     return axios.post("/signup", data);
   },
+
+  getUserData() {
+    return axios.get("/user");
+  }
 };
 
 const api = {

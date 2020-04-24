@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { compose } from "redux";
+import { Link } from "react-router-dom";
 
 // MUI stuff
 import TextField from "@material-ui/core/TextField/TextField";
@@ -9,9 +10,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography/Typography";
 import Grid from "@material-ui/core/Grid/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
-import { red } from "@material-ui/core/colors";
 
 const styles = (theme) => ({
+  form: {
+    padding: "20px",
+    maxWidth: "500px",
+    margin: "0 auto",
+  },
   button: {
     width: "100%;",
     marginTop: "20px",
@@ -22,6 +27,11 @@ const styles = (theme) => ({
   },
   progress: {
     position: "absolute",
+  },
+  smallText: {
+    display: "block",
+    textAlign: "center",
+    fontSize: "14px",
   },
 });
 
@@ -42,7 +52,6 @@ class SignUpForm extends React.Component {
   };
 
   handleSubmit = (event) => {
-    console.log("click");
     event.preventDefault();
     this.setState({
       loading: true,
@@ -58,19 +67,19 @@ class SignUpForm extends React.Component {
     axios
       .post("/signup", userData)
       .then((response) => {
+        const FBIdToken = "Bearer " + response.data.token;
+        localStorage.setItem("FBIdToken", FBIdToken);
+        axios.defaults.headers.common["Authorization"] = FBIdToken;
         this.setState({
           loading: false,
         });
         this.props.history.push("/");
-        console.log(response);
       })
       .catch((error) => {
-        console.log(error.response);
         this.setState({
           loading: false,
           errors: { ...error.response.data },
         });
-        console.log(this.state.errors);
       });
   };
 
@@ -98,16 +107,13 @@ class SignUpForm extends React.Component {
               Sign Up
             </Typography>
 
-            <form
-              className={classes.form}
-              noValidate
-              onSubmit={this.handleSubmit}
-            >
+            <form className={classes.form} onSubmit={this.handleSubmit}>
               <TextField
                 className={classes.input}
                 id="outlined-basic"
                 label="Email"
                 variant="outlined"
+                type="email"
                 name="email"
                 required={true}
                 value={email}
@@ -122,6 +128,7 @@ class SignUpForm extends React.Component {
                 id="outlined-basic"
                 label="Password"
                 variant="outlined"
+                type="password"
                 name="password"
                 required={true}
                 value={password}
@@ -136,6 +143,7 @@ class SignUpForm extends React.Component {
                 id="outlined-basic"
                 label="Confirm Password"
                 variant="outlined"
+                type="password"
                 name="confirmPassword"
                 required={true}
                 value={confirmPassword}
@@ -150,6 +158,7 @@ class SignUpForm extends React.Component {
                 id="outlined-basic"
                 label="Handle"
                 variant="outlined"
+                type="text"
                 name="handle"
                 required={true}
                 value={handle}
@@ -175,12 +184,12 @@ class SignUpForm extends React.Component {
                   />
                 )}
               </Button>
+              <small className={classes.smallText}>
+                Already have an account? Please login{" "}
+                <Link to="/login">here</Link>
+              </small>
               {errors.general && (
-                <Typography
-                  color="error"
-                  variant="text"
-                  align="center"
-                >
+                <Typography color="error" variant="text" align="center">
                   {errors.general}
                 </Typography>
               )}
