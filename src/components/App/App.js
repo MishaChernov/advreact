@@ -39,16 +39,9 @@ class App extends Component {
         <Header />
         <main>
           <Switch>
-            <Grid container>
-              <Route path="/" exact component={Home} />
-
-              <Grid container justify="center" alignItems="center">
-                <Grid item xs={12} sm={5}>
-                  <Route path="/login" component={SignIn} />
-                  <Route path="/registration" component={SignUp} />
-                </Grid>
-              </Grid>
-            </Grid>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" component={SignIn} />
+            <Route path="/registration" component={SignUp} />
           </Switch>
         </main>
       </MuiThemeProvider>

@@ -6,6 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField/TextField";
 import Button from "@material-ui/core/Button/Button";
 import Typography from "@material-ui/core/Typography/Typography";
+import Grid from '@material-ui/core/Grid/Grid';
 
 const styles = (theme) => ({
   button: {
@@ -38,45 +39,58 @@ class SignInForm extends React.Component {
     const { email, password, errors, loading } = this.state;
 
     return (
-      <section>
-        <Typography variant="h3" align="center" gutterBottom={true}>
-          Sign In
-        </Typography>
+      <Grid
+        container
+        justify="center"
+        alignContent="center"
+        alignContent="center"
+      >
+        <Grid item xs={12} md={6}>
+          <section>
+            <Typography variant="h3" align="center" gutterBottom={true}>
+              Sign In
+            </Typography>
 
-        <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
-          <TextField
-            className={classes.input}
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            name="email"
-            required={true}
-            value={email}
-            onChange={this.onChange}
-            margin="dense"
-          />
-          <TextField
-            className={classes.input}
-            id="outlined-basic"
-            label="Password"
-            variant="outlined"
-            name="password"
-            required={true}
-            value={password}
-            onChange={this.onChange}
-            margin="dense"
-          />
-          <Button
-            className={classes.button}
-            variant="contained"
-            disabled={loading}
-            size="large"
-            color="primary"
-          >
-            Sign In
-          </Button>
-        </form>
-      </section>
+            <form
+              className={classes.form}
+              noValidate
+              onSubmit={this.handleSubmit}
+            >
+              <TextField
+                className={classes.input}
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                name="email"
+                required={true}
+                value={email}
+                onChange={this.onChange}
+                margin="dense"
+              />
+              <TextField
+                className={classes.input}
+                id="outlined-basic"
+                label="Password"
+                variant="outlined"
+                name="password"
+                required={true}
+                value={password}
+                onChange={this.onChange}
+                margin="dense"
+              />
+              <Button
+                className={classes.button}
+                variant="contained"
+                disabled={loading}
+                size="large"
+                color="primary"
+              >
+                Sign In
+              </Button>
+            </form>
+          </section>
+        </Grid>
+      </Grid>
     );
   }
 }
