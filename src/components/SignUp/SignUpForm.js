@@ -73,7 +73,7 @@ class SignUpForm extends React.Component {
         this.setState({
           loading: false,
         });
-        this.props.history.push("/");
+        // this.props.history.push("/");
       })
       .catch((error) => {
         this.setState({

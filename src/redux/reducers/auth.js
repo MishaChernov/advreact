@@ -57,11 +57,11 @@ export const loginUser = (user) => (dispatch) => {
       dispatch({ type: CLEAR_ERRORS });
 
       localStorage.setItem("FBIdToken", "Bearer " + response.data.token);
-      this.props.history.push("/");
+      // this.props.history.push("/");
     })
-    .catch((error) => {
-      debugger;
-      const abs = {...error.response.data};
+    .catch((err) => {
+      console.log(err);
+      const abs = {...err.res.data};
       
       dispatch({ type: ERRORS, payload: abs });
       dispatch({ type: LOADING_UI, payload: false });
