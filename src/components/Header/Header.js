@@ -22,13 +22,13 @@ const styles = (theme) => ({
   },
   link: {
     display: "inline-block",
-    padding: "15px",
+    padding: "20px 15px",
     textTransform: "uppercase",
     color: theme.palette.primary.contrastText,
     textDecoration: "none",
   },
   linkActive: {
-    backgroundColor: theme.palette.primary.darker,
+    backgroundColor: theme.palette.primary.lighter,
   },
 });
 

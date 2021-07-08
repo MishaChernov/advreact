@@ -3,6 +3,7 @@ import React from "react";
 //MUI stuff
 import withStyles from "@material-ui/styles/withStyles/withStyles";
 import Typography from "@material-ui/core/Typography/Typography";
+import Grid from '@material-ui/core/Grid/Grid';
 
 const image = require("../../assets/images/home.jpg");
 
@@ -19,12 +20,14 @@ const Home = (props) => {
   const { classes } = props;
 
   return (
-    <section className={classes.homePage}>
-      <Typography variant="h3" gutterBottom="20">
-        Home page
-      </Typography>
-      <img className={classes.img} src={image} alt="Home image" />
-    </section>
+    <Grid container>
+      <section className={classes.homePage}>
+        <Typography variant="h3" gutterBottom={true}>
+          Home page
+        </Typography>
+        <img className={classes.img} src={image} alt="Home image" />
+      </section>
+    </Grid>
   );
 };
 
