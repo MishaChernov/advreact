@@ -1,54 +1,58 @@
 import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import jwtDecode from "jwt-decode";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import Header from "../Header";
 import Home from "../Home";
-import { Route, Switch } from "react-router-dom";
+import AuthRoute from "../../utils/AuthRoute";
+import theme from "../../utils/theme";
+import { getUserData } from "../../redux/reducers/auth";
 
 //MUI stuff
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid/Grid";
 
 import "./global.scss";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#ffab40",
-      darker: "#b27700",
-      lighter: "#ffbb33",
-      contrastText: "#000000",
-    },
-    secondary: {
-      main: "#fdd835",
-      darker: "#b19725",
-      lighter: "#fddf5d",
-      contrastText: "#000000",
-    },
-  },
-  typography: {
-    useNextVariants: true,
-  },
-});
+const initTheme = createMuiTheme(theme);
+
+let authenticated;
+const token = localStorage.FBIdToken;
+// if (token) {
+//   debugger;
+//   const decodedToken = jwtDecode(token);
+
+//   if (decodedToken.exp * 1000 < Date.now()) {
+//     window.location.href = "/login";
+//     authenticated = false;
+//   } else {
+//     authenticated = true;
+//     getUserData();
+//   }
+// }
 
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={initTheme}>
         <Header />
         <main>
           <Switch>
-            <Grid container>
-              <Route path="/" exact component={Home} />
-
-              <Grid container justify="center" alignItems="center">
-                <Grid item xs={12} sm={5}>
-                  <Route path="/login" component={SignIn} />
-                  <Route path="/registration" component={SignUp} />
-                </Grid>
-              </Grid>
-            </Grid>
+            <Route path="/" exact component={Home} />
+            <AuthRoute
+              exact
+              path="/login"
+              component={SignIn}
+              authenticated={authenticated}
+            />
+            <AuthRoute
+              exact
+              path="/registration"
+              component={SignUp}
+              authenticated={authenticated}
+            />
           </Switch>
         </main>
       </MuiThemeProvider>
@@ -56,4 +60,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
